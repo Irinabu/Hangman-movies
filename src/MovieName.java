@@ -24,6 +24,7 @@ public class MovieName {
     }
 
     public static void main(String[] args){
+        
         String path =  "src/movies.txt";
         String randomLine = getRandomLine(path);
         System.out.println("Random line :" + randomLine);
