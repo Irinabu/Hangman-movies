@@ -1,13 +1,15 @@
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
-public class MovieName {
-    private static String getRandomLine(String path){
+public class MovieName{
+    public static String realName;
+    public static String hiddenName;
+
+    public static String setRealName(){
+        String path = "src/movies.txt";
         List<String> lines;
         try
         {
@@ -20,15 +22,27 @@ public class MovieName {
 
         Random random = new Random();
         return lines.get(random.nextInt(lines.size()));
+    }
+
+    public static String setHiddenName(String name) {
+
+        for (int i = 0; i < name.length(); i++) {
+            char ch = name.charAt(i);
+            if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z'))
+                name = name.replace(ch, '_');
+
+        }
+        return name;
+    }
+
+    public MovieName()
+    {
+        realName = setRealName();
+        hiddenName = setHiddenName(realName);
 
     }
 
-    public static void main(String[] args){
-        
-        String path =  "src/movies.txt";
-        String randomLine = getRandomLine(path);
-        System.out.println("Random line :" + randomLine);
-
+    public static void main(String[] args) {
 
     }
 }
